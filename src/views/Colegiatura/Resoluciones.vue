@@ -3,15 +3,26 @@
     <h3 class="card-title">Modulo Resoluciones</h3>
   </div>
   <div class="card-body pb-2">
-    <div class="tab-menu-heading tab-menu-heading-boxed" style="border-bottom: 0 !important">
+    <div
+      class="tab-menu-heading tab-menu-heading-boxed"
+      style="border-bottom: 0 !important"
+    >
       <div class="tabs-menu-boxed" style="float: right; width: 100%">
         <!-- Tabs -->
         <ul class="nav panel-tabs" style="float: right">
           <li>
-            <a href="#registrarTab" class="active" data-bs-toggle="tab" id="tabGeneralRegistrar">REGISTRAR</a>
+            <a
+              href="#registrarTab"
+              class="active"
+              data-bs-toggle="tab"
+              id="tabGeneralRegistrar"
+              >REGISTRAR</a
+            >
           </li>
           <li>
-            <a href="#listadoTab" data-bs-toggle="tab" id="tabGeneralListado">LISTADO</a>
+            <a href="#listadoTab" data-bs-toggle="tab" id="tabGeneralListado"
+              >LISTADO</a
+            >
           </li>
         </ul>
       </div>
@@ -21,7 +32,11 @@
       <div class="tab-content">
         <div class="tab-pane active" id="registrarTab">
           <div class="form-label mt-0 p-0">
-            <button type="button" class="btn btn-primary" @click="loadResolucion()">
+            <button
+              type="button"
+              class="btn btn-primary"
+              @click="loadResolucion()"
+            >
               <i class="fe fe-file me-2"></i>Nuevo
             </button>
           </div>
@@ -36,22 +51,45 @@
                       <div class="col-md-4 mb-3" style="text-align: center">
                         <div class="form-group">
                           <div class="input-group">
-                            <input type="text" class="form-control" placeholder="CQFP" @keypress.enter="verificarCQF"
-                              v-model="cqfp" ref="cqfp" aria-label="Example text with button addon"
-                              aria-describedby="button-addon1" />
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                              data-bs-target="#modalAddColegiado">
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="CQFP"
+                              @keypress.enter="verificarCQF"
+                              v-model="cqfp"
+                              ref="cqfp"
+                              aria-label="Example text with button addon"
+                              aria-describedby="button-addon1"
+                            />
+                            <button
+                              type="button"
+                              class="btn btn-primary"
+                              data-bs-toggle="modal"
+                              data-bs-target="#modalAddColegiado"
+                            >
                               <i class="fe fe-search me-2"></i>
                             </button>
                           </div>
                         </div>
                       </div>
                       <div class="col-md-8 mb-3" style="text-align: center">
-                        <input type="text" class="form-control" placeholder="Agremiado" v-model="agremiado" disabled />
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Agremiado"
+                          v-model="agremiado"
+                          disabled
+                        />
                       </div>
                       <div class="col-md-4 mb-3" style="text-align: center">
-                        <input type="text" class="form-control" placeholder="DNI" v-model="dni" disabled
-                          style="display: none" />
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="DNI"
+                          v-model="dni"
+                          disabled
+                          style="display: none"
+                        />
                       </div>
                     </div>
                   </div>
@@ -65,17 +103,28 @@
                           <label>Tipo Resolución</label>
                         </div>
                         <div class="col" style="text-align: right">
-                          <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#modalAddTipoResolucion">+
-                            Agregar</a>
+                          <a
+                            href="javascript:void(0)"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modalAddTipoResolucion"
+                            >+ Agregar</a
+                          >
                         </div>
                       </div>
-                      <SearchMultiselect :value="resolucion.idTipoResolucion" v-model="resolucion.idTipoResolucion"
-                        :options="tipoResolucionDesplegable" placeholder="Tipo Resolución" :searchable="true"
-                        :canClear="false" ref="idTipoResolucion" :style="
+                      <SearchMultiselect
+                        :value="resolucion.idTipoResolucion"
+                        v-model="resolucion.idTipoResolucion"
+                        :options="tipoResolucionDesplegable"
+                        placeholder="Tipo Resolución"
+                        :searchable="true"
+                        :canClear="false"
+                        ref="idTipoResolucion"
+                        :style="
                           showAdvertise && resolucion.idTipoResolucion == null
                             ? 'border-color: #e23e3d;'
                             : ''
-                        " />
+                        "
+                      />
                       <!-- <select class="form-control form-select"
                                                 data-bs-placeholder="Tipo Resolución"
                                                 v-model="resolucion.idTipoResolucion" ref="idTipoResolucion"
@@ -91,54 +140,88 @@
                   <div class="col-md-3">
                     <div class="form-group">
                       <label>Fecha Emisión Resolución</label>
-                      <input type="date" class="form-control" placeholder="Fecha Emisión Resolución"
-                        v-model="resolucion.fechaEmision" ref="fechaEmision" :style="
+                      <input
+                        type="date"
+                        class="form-control"
+                        placeholder="Fecha Emisión Resolución"
+                        v-model="resolucion.fechaEmision"
+                        ref="fechaEmision"
+                        :style="
                           showAdvertise && resolucion.fechaEmision == ''
                             ? 'border-color: #e23e3d;'
                             : ''
-                        " />
+                        "
+                      />
                     </div>
                   </div>
                   <div class="col-md-2">
                     <div class="form-group">
                       <label>Nº Resolución</label>
-                      <input type="text" class="form-control" placeholder="Nº Resolución" v-model="nroResolucion"
-                        disabled />
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Nº Resolución"
+                        v-model="nroResolucion"
+                        disabled
+                      />
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
                       <label>Nº Expediente</label>
-                      <input type="text" class="form-control" placeholder="Nº Expediente"
-                        v-model="resolucion.nroExpediente" ref="nroExpediente" :style="
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Nº Expediente"
+                        v-model="resolucion.nroExpediente"
+                        ref="nroExpediente"
+                        :style="
                           showAdvertise && resolucion.nroExpediente == ''
                             ? 'border-color: #e23e3d;'
                             : ''
-                        " />
+                        "
+                      />
                     </div>
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
                       <label>Motivo</label>
-                      <textarea class="form-control" placeholder="Motivo" ref="motivo" :style="
-                        showAdvertise && resolucion.motivo == ''
-                          ? 'border-color: #e23e3d;'
-                          : ''
-                      " v-model="resolucion.motivo" rows=" 4"></textarea>
+                      <textarea
+                        class="form-control"
+                        placeholder="Motivo"
+                        ref="motivo"
+                        :style="
+                          showAdvertise && resolucion.motivo == ''
+                            ? 'border-color: #e23e3d;'
+                            : ''
+                        "
+                        v-model="resolucion.motivo"
+                        rows=" 4"
+                      ></textarea>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Fecha Registro</label>
-                      <input type="text" class="form-control" placeholder="Fecha Registro" v-model="fechaRegistro"
-                        disabled />
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Fecha Registro"
+                        v-model="fechaRegistro"
+                        disabled
+                      />
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Usuario Registro</label>
-                      <input type="text" class="form-control" placeholder="Usuario Registro" disabled
-                        v-model="usuarioRegistro" />
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Usuario Registro"
+                        disabled
+                        v-model="usuarioRegistro"
+                      />
                     </div>
                   </div>
                 </div>
@@ -147,10 +230,18 @@
           </div>
           <div class="row">
             <div class="col-md-12 text-center">
-              <button class="btn btn-primary m-2" type="button" @click="loadResolucion()">
+              <button
+                class="btn btn-primary m-2"
+                type="button"
+                @click="loadResolucion()"
+              >
                 Cancelar
               </button>
-              <button class="btn btn-primary" type="button" @click="guardarCambios()">
+              <button
+                class="btn btn-primary"
+                type="button"
+                @click="guardarCambios()"
+              >
                 Guardar
               </button>
             </div>
@@ -159,27 +250,70 @@
         <div class="tab-pane" id="listadoTab">
           <div class="mb-5 p-4 br-5">
             <div class="form-label mt-0 p-0">FILTROS</div>
-            <div class="row">
+            <div class="row align-items-start">
               <div class="col-md-2 mb-3" style="text-align: center">
-                <input type="text" class="form-control" onfocus="(this.type='date')" onblur="(this.type='text')"
-                  placeholder="Fecha Inicio" v-model="filtros.fechaInicio" />
+                <input
+                  type="text"
+                  class="form-control"
+                  onfocus="(this.type='date')"
+                  onblur="(this.type='text')"
+                  placeholder="Fecha Inicio"
+                  v-model="filtros.fechaInicio"
+                />
               </div>
               <div class="col-md-2 mb-3" style="text-align: center">
-                <input type="text" class="form-control" onfocus="(this.type='date')" onblur="(this.type='text')"
-                  placeholder="Fecha Fin" v-model="filtros.fechaFin" />
+                <input
+                  type="text"
+                  class="form-control"
+                  onfocus="(this.type='date')"
+                  onblur="(this.type='text')"
+                  placeholder="Fecha Fin"
+                  v-model="filtros.fechaFin"
+                />
               </div>
               <div class="col-md-2 mb-3" style="text-align: center">
-                <input type="text" class="form-control" placeholder="CQFP" v-model="filtros.cqfp" />
+                <select
+                  class="form-control form-select select2"
+                  data-bs-placeholder="Filtros"
+                  v-model="filtros.tipoFiltro"
+                >
+                  <option value="">Filtros</option>
+                  <option value="dni">DNI</option>
+                  <option value="cqf">CQFP</option>
+                  <option value="nombreApellido">Apellidos y Nombres</option>
+                </select>
+              </div>
+              <div class="col-md-3 mb-3" style="text-align: center">
+                <input
+                  type="text"
+                  class="form-control"
+                  aria-label="Text input with dropdown button"
+                  v-model="filtros.searchFiltro"
+                  placeholder="Buscar"
+                />
               </div>
 
-              <div class="col-md-6 mb-3" style="text-align: left">
-                <button type="button" class="btn btn-primary" @click="listarResolucion()" style="margin: 2px">
+              <div class="col-md-3 mb-3 gap-3" style="text-align: left">
+                <button
+                  type="button"
+                  class="btn btn-primary me-1"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalSearchListado"
+                >
                   <i class="fe fe-search me-2"></i>Buscar
                 </button>
-                <button type="button" class="btn btn-primary m-1" @click="nuevaResolucion()">
+                <button
+                  type="button"
+                  class="btn btn-primary me-1"
+                  @click="nuevaResolucion()"
+                >
                   <i class="fe fe-file me-2"></i>Nuevo
                 </button>
-                <button class="btn btn-primary" type="button" @click="download_excel()">
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  @click="download_excel()"
+                >
                   <i class="fe fe-share me-2"></i>Exportar
                 </button>
               </div>
@@ -188,7 +322,9 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="table-responsive">
-                  <table class="table border text-nowrap text-md-nowrap table-striped table-sm mb-0">
+                  <table
+                    class="table border text-nowrap text-md-nowrap table-striped table-sm mb-0"
+                  >
                     <thead>
                       <tr>
                         <th>#</th>
@@ -201,8 +337,11 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="(item, index) in listadoResolucion" :key="'item-' + index"
-                        v-if="listadoResolucion.length != 0">
+                      <tr
+                        v-for="(item, index) in listadoResolucion"
+                        :key="'item-' + index"
+                        v-if="listadoResolucion.length != 0"
+                      >
                         <td scope="row">{{ indexMethod(index) }}</td>
                         <td>{{ item.tipoResolucion }}</td>
                         <td>{{ item.persona_cqf }}</td>
@@ -210,14 +349,31 @@
                         <td>{{ item.nroResolucion }}</td>
                         <td>{{ item.fechaEmision }}</td>
                         <td class="text-center">
-                          <i class="fa fa-eye mx-1 text-primary" role="button" @click="openurlArchivo(item.url)"
-                            v-show="item.url != null" title="Ver"></i>
-                          <i class="fa fa-pencil mx-1 text-yellow" role="button" @click="cargarVer(item, index)"
-                            title="Editar"></i>
-                          <i class="fe fe-dollar-sign mx-1 text-black" role="button" @click="abrirModalDescuento(item)"
-                            title="Aplicar Descuento"></i>
-                          <i class="fa fa-trash mx-1 text-danger" role="button" @click="cargarEliminar(item, index)"
-                            title="Eliminar"></i>
+                          <i
+                            class="fa fa-eye mx-1 text-primary"
+                            role="button"
+                            @click="openurlArchivo(item.url)"
+                            v-show="item.url != null"
+                            title="Ver"
+                          ></i>
+                          <i
+                            class="fa fa-pencil mx-1 text-yellow"
+                            role="button"
+                            @click="cargarVer(item, index)"
+                            title="Editar"
+                          ></i>
+                          <i
+                            class="fe fe-dollar-sign mx-1 text-black"
+                            role="button"
+                            @click="abrirModalDescuento(item)"
+                            title="Aplicar Descuento"
+                          ></i>
+                          <i
+                            class="fa fa-trash mx-1 text-danger"
+                            role="button"
+                            @click="cargarEliminar(item, index)"
+                            title="Eliminar"
+                          ></i>
                         </td>
                       </tr>
                       <tr v-else>
@@ -229,7 +385,12 @@
                   </table>
                   <div class="row">
                     <div class="pagination justify-content-center mt-3">
-                      <div class="dataTables_info" id="responsive-datatable_info" role="status" aria-live="polite">
+                      <div
+                        class="dataTables_info"
+                        id="responsive-datatable_info"
+                        role="status"
+                        aria-live="polite"
+                      >
                         Showing
                         {{
                           pagination.currentPage == 1
@@ -239,7 +400,7 @@
                         to
                         {{
                           pagination.perPage * pagination.currentPage >
-                            pagination.total
+                          pagination.total
                             ? pagination.total
                             : pagination.perPage * pagination.currentPage
                         }}
@@ -247,23 +408,39 @@
                       </div>
                     </div>
                     <div class="pagination justify-content-center mt-3">
-                      <button @click="cambiarPagina(1)" class="page-link btn btn-outline-info">
+                      <button
+                        @click="cambiarPagina(1)"
+                        class="page-link btn btn-outline-info"
+                      >
                         Primero
                       </button>
-                      <li class="page-item" v-for="(item, index) in totalPaginas" style="list-style: none" :key="index">
-                        <button href="#" @click="cambiarPagina(index + 1)" :class="
-                          buscador.page_index == index + 1
-                            ? 'page-link btn'
-                            : 'page-link btn btn-outline-info'
-                        " :style="
-  buscador.page_index == index + 1
-    ? 'color: white; background-color: #36b9cc;'
-    : ''
-">
+                      <li
+                        class="page-item"
+                        v-for="(item, index) in totalPaginas"
+                        style="list-style: none"
+                        :key="index"
+                      >
+                        <button
+                          href="#"
+                          @click="cambiarPagina(index + 1)"
+                          :class="
+                            buscador.page_index == index + 1
+                              ? 'page-link btn'
+                              : 'page-link btn btn-outline-info'
+                          "
+                          :style="
+                            buscador.page_index == index + 1
+                              ? 'color: white; background-color: #36b9cc;'
+                              : ''
+                          "
+                        >
                           {{ index + 1 }}
                         </button>
                       </li>
-                      <button @click="cambiarPagina(totalPaginas)" class="page-link btn btn-outline-info">
+                      <button
+                        @click="cambiarPagina(totalPaginas)"
+                        class="page-link btn btn-outline-info"
+                      >
                         Último
                       </button>
                     </div>
@@ -276,12 +453,31 @@
       </div>
     </div>
   </div>
-  <modal-add-tipo-resolucion id="modalAddTipoResolucion" @addTipoResolucion="addTipoResolucion" />
-  <modal-add-colegiado id="modalAddColegiado" @selectColegiado="selectColegiado"
-    @closeModalColegiado="closeModalColegiado" />
+  <modal-add-tipo-resolucion
+    id="modalAddTipoResolucion"
+    @addTipoResolucion="addTipoResolucion"
+  />
+  <modal-add-colegiado
+    id="modalAddColegiado"
+    :filtros="modalFiltros"
+    @selectColegiado="selectColegiado"
+    @closeModalColegiado="closeModalColegiado"
+  />
 
-  <modal-add-descuento id="modalAddDescuento" :cod_colegiado="cod_colegiado" :aprobado="aprobado"
-    :id_resolucion="id_resolucion" :tramitado="tramitado" />
+  <modal-search-listado-resoluciones
+    id="modalSearchListado"
+    :filtros="modalFiltros"
+    @selectColegiadoListado="selectColegiadoListado"
+    @closeModalColegiadoListado="closeModalColegiadoListado"
+  />
+
+  <modal-add-descuento
+    id="modalAddDescuento"
+    :cod_colegiado="cod_colegiado"
+    :aprobado="aprobado"
+    :id_resolucion="id_resolucion"
+    :tramitado="tramitado"
+  />
 </template>
 
 <script>
@@ -289,6 +485,7 @@ import { mapActions } from "vuex";
 import global from "../../global";
 import SearchMultiselect from "../../components/SearchMultiselect/SearchMultiselect.vue";
 import modalAddTipoResolucion from "../../components/resoluciones/NewTipoResolucion/modalAddTipoResolucion.vue";
+import ModalSearchListadoResoluciones from "../../components/resoluciones/listado/modalSearchListadoResoluciones.vue";
 import modalAddColegiado from "../../components/colegiado/modalAddColegiado.vue";
 import modalAddDescuento from "../../components/resoluciones/aplicarDescuentos/modalAddDescuento.vue";
 //Librayr
@@ -300,6 +497,7 @@ export default {
     SearchMultiselect,
     modalAddTipoResolucion,
     modalAddColegiado,
+    ModalSearchListadoResoluciones,
     modalAddDescuento,
   },
   data() {
@@ -313,7 +511,8 @@ export default {
       indiceModificando: -1,
       showAdvertise: false,
       filtros: {
-        cqfp: "",
+        tipoFiltro: "",
+        searchFiltro: "",
         fechaInicio: "",
         fechaFin: "",
       },
@@ -354,6 +553,14 @@ export default {
       tramitado: "",
       id_resolucion: 0,
     };
+  },
+  computed: {
+    modalFiltros() {
+      return {
+        filtrosColegiado: this.filtros.tipoFiltro,
+        searchFiltro: this.filtros.searchFiltro,
+      };
+    },
   },
   methods: {
     ...mapActions({
@@ -441,6 +648,12 @@ export default {
       );
       modal.hide();
     },
+    closeModalColegiadoListado: function () {
+      const modal = bootstrap.Modal.getInstance(
+        document.getElementById("modalSearchListado")
+      );
+      modal.hide();
+    },
     selectColegiado(item) {
       this.cqfp = item.cqfll;
       this.resolucion.resolucion_persona = [
@@ -454,6 +667,12 @@ export default {
       this.agremiado =
         item.nombres + " " + item.apellidoPaterno + " " + item.apellidoMaterno;
       this.closeModalColegiado();
+    },
+    selectColegiadoListado: async function (cqfll = '') {
+      this.buscador.cqfll = cqfll;
+      this.closeModalColegiadoListado();
+      await this.listarResolucion()
+
     },
     addTipoResolucion: async function (idTipoResolucion) {
       this.comboTipoResolucion();
@@ -619,7 +838,6 @@ export default {
       this.buscador.page_index = pagina;
       this.buscador.fechaInicio = this.filtros.fechaInicio;
       this.buscador.fechaFin = this.filtros.fechaFin;
-      this.buscador.cqfll = this.filtros.cqfp;
 
       var res = await this.ListarResolucion(this.buscador);
       this.pagination.total = res.totalRegistros;

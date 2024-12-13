@@ -43,32 +43,39 @@
           <div class="row">
             <div class="col-md-12 row">
               <div class="mb-5 p-4 br-5">
-                <div class="form-label mt-0 p-0">DATOS GENERALES</div>
+                <div class="form-label mt-0">DATOS GENERALES</div>
                 <br />
                 <div class="row">
                   <div class="col-md-6">
-                    <div class="form-group">
-                      <label>CQFP</label>
-                      <div class="input-group">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="CQFP"
-                          aria-label="Example text with button addon"
-                          ref="cqfp"
-                          aria-describedby="button-addon1"
-                          @keypress.enter="verificarCQF"
-                          v-model="cqfp"
-                        />
-                        <button
-                          type="button"
-                          class="btn btn-primary"
-                          data-bs-toggle="modal"
-                          data-bs-target="#modalAddColegiado"
-                        >
-                          <i class="fe fe-search me-2"></i>
-                        </button>
-                      </div>
+                    <label>Filtros</label>
+                    <div class="row gap-1 px-3">
+                      <select
+                        class="col-3 form-select select2"
+                        data-bs-placeholder="Filtros"
+                        v-model="registrarFiltros.tipoFiltro"
+                      >
+                        <option value="">Filtros</option>
+                        <option value="dni">DNI</option>
+                        <option value="cqf">CQFP</option>
+                        <option value="nombreApellido">
+                          Apellidos y Nombres
+                        </option>
+                      </select>
+                      <input
+                        type="text"
+                        class="col-5 form-control"
+                        aria-label="Text input with dropdown button"
+                        v-model="registrarFiltros.searchFiltro"
+                        placeholder="Buscar"
+                      />
+                      <button
+                        type="button"
+                        class="col-2 btn btn-primary col"
+                        data-bs-toggle="modal"
+                        data-bs-target="#modalAddColegiado"
+                      >
+                        <i class="fe fe-search me-2"></i>Buscar
+                      </button>
                     </div>
                   </div>
                   <div class="col-md-6">
@@ -379,13 +386,7 @@
                 </div>
                 <div class="table-responsive">
                   <table
-                    class="
-                      table
-                      border
-                      text-nowrap text-md-nowrap
-                      table-striped table-sm
-                      mb-0
-                    "
+                    class="table border text-nowrap text-md-nowrap table-striped table-sm mb-0"
                   >
                     <thead>
                       <tr>
@@ -514,6 +515,7 @@
   <modal-add-colegiado
     id="modalAddColegiado"
     @selectColegiado="selectColegiado"
+    :filtros="modalFiltros"
     @closeModalColegiado="closeModalColegiado"
   />
 </template>
@@ -542,6 +544,10 @@ export default {
       currentDate: dayjs(this.date).format("YYYY-MM-DD"),
       indiceModificando: -1,
       showAdvertise: false,
+      registrarFiltros: {
+        tipoFiltro: "",
+        searchFiltro: "",
+      },
       filtros: {
         agremiado: "",
         fecha_inicio: "",
@@ -604,6 +610,14 @@ export default {
       dni: "",
       colegioCQFDesplegable: [],
     };
+  },
+  computed: {
+    modalFiltros() {
+      return {
+        filtrosColegiado: this.registrarFiltros.tipoFiltro,
+        searchFiltro: this.registrarFiltros.searchFiltro,
+      };
+    },
   },
   methods: {
     ...mapActions({

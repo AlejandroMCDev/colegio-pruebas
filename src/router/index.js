@@ -199,7 +199,7 @@ const routes = [
       {
         path: "/colegiatura/controltraslado",
         meta: { necesita_autenticacion: true },
-        component: () => import("../views/Colegiatura/Controltraslado.vue"),
+        component: () => import("../views/Colegiatura/ControlTraslado.vue"),
       },
       {
         path: "/colegiatura/asignarcobranza",

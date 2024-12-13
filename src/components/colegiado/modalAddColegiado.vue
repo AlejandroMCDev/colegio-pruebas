@@ -167,13 +167,17 @@ export default {
       type: Number,
       default: 0,
     },
+    filtros: {
+      type: Object,
+      default: { filtrosColegiado: "", searchFiltro: "" },
+    },
   },
   data() {
     return {
       cargando: false,
+      listaColegiados: [],
       filtrosColegiado: "",
       searchFiltro: "",
-      listaColegiados: [],
       pagination: {
         perPage: 10,
         currentPage: 1,
@@ -190,11 +194,29 @@ export default {
       initialPage: 1,
     };
   },
-  watch: {},
-  computed: {},
+  computed: {
+    filtrosColegiadoComputed() {
+      return this.filtros.filtrosColegiado;
+    },
+    searchFiltroComputed() {
+      return this.filtros.searchFiltro;
+    },
+  },
+  watch: {
+    filtrosColegiadoComputed: {
+      handler(newValue) {
+        this.filtrosColegiado = newValue;
+      },
+    },
+    searchFiltroComputed: {
+      handler(newValue) {
+        this.searchFiltro = newValue;
+      },
+    },
+  },
   methods: {
     selectColegiado(item) {
-      this.$emit("selectColegiado",item);
+      this.$emit("selectColegiado", item);
     },
     indexMethod(index) {
       return (this.buscador.page_index - 1) * 10 + (index + 1);

@@ -48,21 +48,29 @@
             <div class="text-center">
               <loading :mostrar="cargandoVerificarCQF" />
             </div>
-            <div class="col-md-4 mb-3">
-              <label>CQFLL</label>
-              <div class="input-group">
+            <div class="col-md-8 mb-3">
+              <label>Filtros</label>
+              <div class="row gap-1 px-3">
+                <select
+                  class="col-3 form-select select2"
+                  data-bs-placeholder="Filtros"
+                  v-model="filtros.tipoFiltro"
+                >
+                  <option value="">Filtros</option>
+                  <option value="dni">DNI</option>
+                  <option value="cqf">CQFP</option>
+                  <option value="nombreApellido">Apellidos y Nombres</option>
+                </select>
                 <input
                   type="text"
-                  class="form-control"
-                  placeholder="CQFP"
-                  aria-label="Example text with button addon"
-                  aria-describedby="button-addon1"
-                  v-model="cqfp"
-                  @keypress.enter="verificarCQF"
+                  class="col-5 form-control"
+                  aria-label="Text input with dropdown button"
+                  v-model="filtros.searchFiltro"
+                  placeholder="Buscar"
                 />
                 <button
                   type="button"
-                  class="btn btn-primary"
+                  class="col-1 btn btn-primary col text-center"
                   data-bs-toggle="modal"
                   data-bs-target="#modalAddColegiado"
                 >
@@ -114,7 +122,7 @@
               <button
                 type="button"
                 class="btn btn-primary"
-                style="margin-top: 29px"
+                style="margin-top: 5px"
                 @click="cargarRegistros()"
               >
                 <i class="fe fe-search me-2"></i>Buscar
@@ -173,6 +181,7 @@
   </div>
   <modal-add-colegiado
     id="modalAddColegiado"
+    :filtros="modalFiltros"
     @selectColegiado="selectColegiado"
     @closeModalColegiado="closeModalColegiado"
   />
@@ -196,6 +205,10 @@ export default {
       iprutaFiles: global.ruta_api,
       cargando: false,
       cargandoVerificarCQF: false,
+      filtros: {
+        searchFiltro: "",
+        tipoFiltro: "",
+      },
       date: new Date(),
       currentDate: dayjs(this.date).format("YYYY-MM-DD"),
       listadoRegistro: [],
@@ -220,6 +233,8 @@ export default {
       modal.hide();
     },
     selectColegiado(item) {
+      console.log({ item });
+
       this.cod_colegiado = item.id;
       this.cqfp = item.cqfll;
       this.agremiado =
@@ -294,6 +309,12 @@ export default {
       sum = parseFloat(sum).toFixed(2);
 
       return sum;
+    },
+    modalFiltros() {
+      return {
+        filtrosColegiado: this.filtros.tipoFiltro,
+        searchFiltro: this.filtros.searchFiltro,
+      };
     },
   },
   mounted() {
